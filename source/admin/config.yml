@@ -1,0 +1,76 @@
+# 此文件由 bin/generate-config.mjs 根据根目录 _config.yml 自动生成，请勿直接修改。
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: ooame-cafe/ooame-cafe.github.io
+  branch: main
+media_folder: /source/uploads
+public_folder: /uploads
+locale: zh_Hans
+publish_mode: simple
+collections:
+  - name: posts
+    label: 文章
+    label_singular: 文章
+    folder: /source/_posts
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{year}}-{{month}}-{{day}} · {{title}}"
+    fields:
+      - label: 标题
+        name: title
+        widget: string
+      - label: 发布日期
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD HH:mm:ss
+        date_format: YYYY-MM-DD
+        time_format: HH:mm:ss
+      - label: 分类
+        name: categories
+        widget: select
+        options:
+          - 日常记录
+          - 研究笔记
+          - 读书
+          - 项目
+          - 旅行
+        default: 日常记录
+      - label: 标签
+        name: tags
+        widget: list
+        required: false
+      - label: 首页摘要
+        name: excerpt
+        widget: text
+        required: false
+      - label: 封面图
+        name: cover
+        widget: image
+        required: false
+      - label: 公开发布
+        name: published
+        widget: boolean
+        default: true
+        required: false
+        hint: 关闭后内容会保存到仓库，但不会出现在公开网站。
+      - label: 正文
+        name: body
+        widget: richtext
+  - name: pages
+    label: 固定页面
+    files:
+      - label: 关于
+        name: about
+        file: /source/about/index.md
+        fields:
+          - label: 标题
+            name: title
+            widget: string
+          - label: 正文
+            name: body
+            widget: richtext
