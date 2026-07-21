@@ -44,13 +44,6 @@
       <strong><%= config.title %></strong>
       <p><%= config.profile.footer %></p>
     </div>
-    <div class="footer-links">
-      <% Object.entries(config.social || {}).forEach(function([name, link]) { %>
-        <a href="<%- link %>" target="_blank" rel="noopener noreferrer"><%= name %></a>
-      <% }) %>
-      <a href="<%- url_for('/atom.xml') %>">RSS</a>
-      <a href="<%- url_for('/admin/index.html') %>">写作后台</a>
-    </div>
     <p class="copyright">© <%= new Date().getFullYear() %> <%= config.author %></p>
   </footer>
 

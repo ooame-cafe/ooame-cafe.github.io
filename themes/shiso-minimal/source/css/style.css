@@ -427,7 +427,6 @@ svg { display: block; }
 }
 .site-footer strong { color: var(--heading); }
 .site-footer p { margin: 3px 0; }
-.footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 14px; }
 .copyright { grid-column: 1 / -1; }
 
 @media (max-width: 900px) {
@@ -465,7 +464,6 @@ svg { display: block; }
   .archive-item span { display: block; margin-top: 4px; }
   .taxonomy-grid { grid-template-columns: 1fr; }
   .site-footer { grid-template-columns: 1fr; }
-  .footer-links { justify-content: flex-start; }
   .copyright { grid-column: auto; }
 }
 
