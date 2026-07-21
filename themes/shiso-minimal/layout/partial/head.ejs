@@ -1,0 +1,22 @@
+<%# 页面元信息、主题预加载与全站样式入口。 %>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><% if (page.title) { %><%= page.title %> · <% } %><%= config.title %></title>
+<meta name="description" content="<%= page.excerpt ? strip_html(page.excerpt).replace(/\n/g, ' ').trim() : config.description %>">
+<meta name="theme-color" content="#fdf6e3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#2d353b" media="(prefers-color-scheme: dark)">
+<link rel="alternate" type="application/atom+xml" title="<%= config.title %>" href="<%- url_for('/atom.xml') %>">
+<script>
+  // 在样式加载前恢复主题，减少页面闪烁。
+  (() => {
+    try {
+      const saved = localStorage.getItem('shiso-theme');
+      const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = saved || (dark ? 'dark' : 'light');
+    } catch (_) {
+      document.documentElement.dataset.theme = 'light';
+    }
+  })();
+</script>
+<%- css('css/article') %>
+<%- css('css/style') %>

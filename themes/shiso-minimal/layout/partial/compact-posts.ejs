@@ -1,0 +1,12 @@
+<%# 分类与标签页共用的紧凑文章列表。 %>
+<div class="compact-list">
+  <% posts.each(function(post) { %>
+    <article>
+      <time datetime="<%= date(post.date, 'YYYY-MM-DD') %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+      <div>
+        <h2><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
+        <p><%= strip_html(post.excerpt || post.content).replace(/\s+/g, ' ').trim().slice(0, 110) %></p>
+      </div>
+    </article>
+  <% }) %>
+</div>
