@@ -1,0 +1,13 @@
+<%# 标签总览页：按文章数量调整标签显示。 %>
+<section class="page-shell">
+  <header class="page-header">
+    <p class="eyebrow">TAGS</p>
+    <h1>文章标签</h1>
+    <p>标签用于连接不同分类中讨论相近问题的文章。</p>
+  </header>
+  <div class="tag-cloud">
+    <% site.tags.sort('name').each(function(tag) { %>
+      <a href="<%- url_for(tag.path) %>"># <%= tag.name %><small><%= tag.length %></small></a>
+    <% }) %>
+  </div>
+</section>

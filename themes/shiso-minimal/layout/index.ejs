@@ -1,0 +1,77 @@
+<%# 首页：站点介绍、内容分类与近期文章列表。 %>
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow"><%= config.profile.eyebrow %></p>
+    <h1><%= config.title %></h1>
+    <p class="hero-intro"><%= config.profile.intro %></p>
+    <div class="hero-actions">
+      <a class="primary-button" href="#recent-posts">浏览近期文章</a>
+      <a class="secondary-button" href="<%- url_for('/about/') %>">关于我</a>
+    </div>
+  </div>
+  <div class="hero-panel" aria-label="博客内容概况">
+    <p>内容索引</p>
+    <dl>
+      <div><dt><%= site.posts.length %></dt><dd>篇文章</dd></div>
+      <div><dt><%= site.categories.length %></dt><dd>个分类</dd></div>
+      <div><dt><%= site.tags.length %></dt><dd>个标签</dd></div>
+    </dl>
+    <div class="category-chips">
+      <% (config.content.categories || []).forEach(function(category) { %>
+        <a href="<%- url_for('/categories/' + category + '/') %>"><%= category %></a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section id="recent-posts" class="section-heading">
+  <div>
+    <p class="eyebrow">RECENT WRITING</p>
+    <h2>近期文章</h2>
+  </div>
+  <a href="<%- url_for('/archives/') %>">查看全部归档 →</a>
+</section>
+
+<section class="post-grid" aria-label="近期文章">
+  <% if (page.posts && page.posts.length) { %>
+    <% page.posts.each(function(post) { %>
+      <article class="post-card">
+        <% if (post.cover) { %>
+          <a class="post-cover" href="<%- url_for(post.path) %>" tabindex="-1" aria-hidden="true">
+            <img src="<%- url_for(post.cover) %>" alt="" loading="lazy">
+          </a>
+        <% } %>
+        <div class="post-card-body">
+          <div class="post-meta">
+            <time datetime="<%= date(post.date, 'YYYY-MM-DD') %>"><%= date(post.date, 'YYYY年MM月DD日') %></time>
+            <span>·</span>
+            <span><%= reading_time(post.content) %> 分钟阅读</span>
+          </div>
+          <h3><a href="<%- url_for(post.path) %>"><%= post.title %></a></h3>
+          <p><%= strip_html(post.excerpt || post.content).replace(/\s+/g, ' ').trim().slice(0, config.content.excerpt_length) %><% if (strip_html(post.excerpt || post.content).length > config.content.excerpt_length) { %>…<% } %></p>
+          <div class="card-bottom">
+            <div class="tag-list">
+              <% if (post.categories && post.categories.length) { %>
+                <% post.categories.each(function(category) { %>
+                  <a href="<%- url_for(category.path) %>"><%= category.name %></a>
+                <% }) %>
+              <% } %>
+            </div>
+            <a class="read-more" href="<%- url_for(post.path) %>" aria-label="阅读全文：<%= post.title %>">阅读全文</a>
+          </div>
+        </div>
+      </article>
+    <% }) %>
+  <% } else { %>
+    <div class="empty-state">
+      <h3>还没有公开文章</h3>
+      <p>打开写作后台，写下第一篇记录。</p>
+    </div>
+  <% } %>
+</section>
+
+<% if (page.total && page.total > 1) { %>
+  <nav class="pagination" aria-label="文章分页">
+    <%- paginator({ prev_text: '上一页', next_text: '下一页' }) %>
+  </nav>
+<% } %>

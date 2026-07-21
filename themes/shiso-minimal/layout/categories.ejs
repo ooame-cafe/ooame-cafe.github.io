@@ -1,0 +1,16 @@
+<%# 分类总览页：展示分类与文章数量。 %>
+<section class="page-shell">
+  <header class="page-header">
+    <p class="eyebrow">CATEGORIES</p>
+    <h1>内容分类</h1>
+    <p>用较少的分类保持内容结构清楚。</p>
+  </header>
+  <div class="taxonomy-grid">
+    <% site.categories.sort('name').each(function(category) { %>
+      <a href="<%- url_for(category.path) %>">
+        <strong><%= category.name %></strong>
+        <span><%= category.length %> 篇文章</span>
+      </a>
+    <% }) %>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<%# 单个标签页：列出该标签下的文章。 %>
+<section class="page-shell">
+  <header class="page-header">
+    <p class="eyebrow">TAG</p>
+    <h1># <%= page.tag || '标签' %></h1>
+    <p>与这个标签相关的公开文章。</p>
+  </header>
+  <%- partial('partial/compact-posts', { posts: page.posts }) %>
+  <% if (page.total && page.total > 1) { %>
+    <nav class="pagination" aria-label="标签分页"><%- paginator({ prev_text: '上一页', next_text: '下一页' }) %></nav>
+  <% } %>
+</section>

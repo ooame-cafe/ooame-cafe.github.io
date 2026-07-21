@@ -1,0 +1,12 @@
+<%# 单个分类页：列出该分类下的文章。 %>
+<section class="page-shell">
+  <header class="page-header">
+    <p class="eyebrow">CATEGORY</p>
+    <h1><%= page.category || '分类' %></h1>
+    <p>该分类下的公开文章。</p>
+  </header>
+  <%- partial('partial/compact-posts', { posts: page.posts }) %>
+  <% if (page.total && page.total > 1) { %>
+    <nav class="pagination" aria-label="分类分页"><%- paginator({ prev_text: '上一页', next_text: '下一页' }) %></nav>
+  <% } %>
+</section>
