@@ -1,0 +1,113 @@
+# 博客唯一配置入口：首次使用时按 README 修改“需要填写”部分，其余文件由脚本生成。
+
+# ===== 需要填写：站点信息 =====
+title: 大雨カフェ
+subtitle: 研究、阅读与生活记录
+description: 一个用于整理研究笔记、项目和日常片段的个人博客。
+author: シソ
+language: zh-CN
+timezone: Asia/Shanghai
+
+# 没有自定义域名时使用 GitHub Pages 免费地址，并把 custom_domain 留空。
+url: https://ooame-cafe.github.io
+root: /
+custom_domain: ""
+
+# ===== 需要填写：GitHub 仓库 =====
+repository:
+  owner: ooame-cafe
+  name: ooame-cafe.github.io
+  branch: main
+
+# ===== 可选：站点菜单与个人链接 =====
+menu:
+  首页: /
+  归档: /archives/
+  分类: /categories/
+  标签: /tags/
+  关于: /about/
+
+social:
+  GitHub: https://github.com/ooame-cafe
+
+profile:
+  eyebrow: PERSONAL NOTES
+  intro: 在这里整理研究、阅读、项目和生活中的具体问题。
+  footer: 写作是为了留下可复查的线索。
+
+# 分类会同步到网页写作后台，可按自己的需要增删。
+content:
+  categories:
+    - 日常记录
+    - 研究笔记
+    - 读书
+    - 项目
+    - 旅行
+  posts_per_page: 10
+  excerpt_length: 150
+  reading_speed: 400
+
+# ===== 工具配置：一般不需要修改 =====
+tooling:
+  cms_config: source/admin/config.yml
+  cms_bundle: source/admin/sveltia-cms.js
+  cname_file: source/CNAME
+  upload_dir: source/uploads
+  backup_dir: ../shiso-blog-backups
+  local_port: 4000
+
+search:
+  path: search.json
+
+# Hexo 目录与链接设置
+permalink: :year/:month/:day/:title/
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+new_post_name: :title.md
+default_layout: post
+post_asset_folder: false
+index_generator:
+  path: ""
+  per_page: 10
+  order_by: -date
+archive_generator:
+  per_page: 20
+  yearly: true
+  monthly: false
+category_generator:
+  per_page: 10
+tag_generator:
+  per_page: 10
+
+# Markdown、代码与摘要
+marked:
+  prependRoot: true
+  postAsset: false
+highlight:
+  enable: true
+  line_number: false
+  auto_detect: false
+  wrap: true
+  hljs: false
+
+# RSS
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  content: true
+
+theme: shiso-minimal
+deploy:
+  type: ""
+
+# 后台文件和上传图片直接复制，不交给 Hexo 渲染。
+skip_render:
+  - "admin/**"
+  - "uploads/**"

@@ -1,0 +1,17 @@
+# Hexo 构建产物与本机依赖
+node_modules/
+public/
+.deploy_git/
+db.json
+
+# 系统与编辑器文件
+.DS_Store
+Thumbs.db
+*.log
+
+# 由配置脚本从依赖包复制，不提交仓库
+source/admin/sveltia-cms.js
+
+# 本地备份与临时文件
+*.zip
+*.tmp

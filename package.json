@@ -1,0 +1,38 @@
+{
+  "name": "shiso-everforest-blog",
+  "version": "2.0.0",
+  "private": true,
+  "description": "一个可本地写作、网页发布并部署到 GitHub Pages 的 Everforest Hexo 博客模板。",
+  "scripts": {
+    "setup": "node bin/setup.mjs",
+    "configure": "node bin/generate-config.mjs",
+    "preserver": "npm run configure",
+    "server": "hexo server",
+    "prebuild": "npm run configure",
+    "build": "hexo clean && hexo generate",
+    "check": "npm run build",
+    "new": "hexo new",
+    "sync": "bash bin/sync-github.sh",
+    "sync:gitee": "bash bin/sync-gitee.sh",
+    "sync:all": "bash bin/sync-all.sh",
+    "backup": "bash bin/backup.sh",
+    "update:local": "bash bin/update-local.sh",
+    "test": "npm run build"
+  },
+  "dependencies": {
+    "@sveltia/cms": "0.164.2",
+    "hexo": "^8.1.0",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-feed": "^3.0.0",
+    "hexo-generator-index": "^4.0.0",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.1",
+    "hexo-server": "^3.0.0",
+    "yaml": "^2.8.1"
+  },
+  "hexo": {
+    "version": "8.1.2"
+  }
+}
